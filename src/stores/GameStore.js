@@ -12,7 +12,7 @@ let _game = Object.assign({
   "donations": 0,
   "partyLocation": "",
   "partyNotes": "",
-  "partyAchievements": "",
+  "partyAchievements": {},
   "reputation": 0,
   "globalAchievements": {},
   "scenariosUnlocked": [],
@@ -22,7 +22,7 @@ let _game = Object.assign({
     "defaultScenarioLevel": -1,
     "defaultNumPlaying": -1,
     "scenario": -1,
-    "monsters": []
+    "monsters": {}
   }
 }, getGameLocalStorage());
 
@@ -48,25 +48,15 @@ function setGameLocalStorage(game) {
 }
 
 function changeProsperity(amount) {
-  let newProsperity = _game.prosperity + amount;
-
-  if (newProsperity > MAX_PROSPERITY) {
-    newProsperity = MAX_PROSPERITY;
-  }
-
-  if (newProsperity < 0) {
-    newProsperity = 0;
-  }
-
-  _game.prosperity = newProsperity;
+  const newProsperity = Math.max(0, Math.min(MAX_PROSPERITY, _game.prosperity + amount));
+  changeGame({prosperity: newProsperity});
 }
 
 function changeGame(game) {
-  setGame(game);
+  setGame(Object.assign({}, _game, game));
 }
 
 class GameStoreClass extends EventEmitter {
-
   emitGameChange() {
     this.emit(CHANGE_GAME_EVENT);
   }
@@ -82,7 +72,6 @@ class GameStoreClass extends EventEmitter {
   getGame() {
     return _game;
   }
-
 }
 
 const GameStore = new GameStoreClass();
@@ -91,7 +80,6 @@ const GameStore = new GameStoreClass();
 // and look for our various action types so we can
 // respond appropriately
 GameStore.dispatchToken = AppDispatcher.register(action => {
-
   switch(action.actionType) {
     case GameConstants.RECEIVE_GAME:
       setGame(action.game);
@@ -117,7 +105,6 @@ GameStore.dispatchToken = AppDispatcher.register(action => {
 
     default:
   }
-
 });
 
 export default GameStore;
