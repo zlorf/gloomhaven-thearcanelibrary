@@ -3,7 +3,8 @@ import { Grid, Row, Col, Button, ProgressBar, Modal } from 'react-bootstrap';
 import GameStore from '../stores/GameStore';
 import GameActions from '../actions/GameActions';
 import GloomhavenIcon from '../components/utils/GloomhavenIcon';
-import * as MONSTER_STATS from '../constants/MonsterStats';
+import {MONSTERS} from '../constants/MonsterStats';
+import {SCENARIOS} from '../constants/Scenarios';
 
 const iconWidth = "30px";
 const iconWidthSmall = "18px";
@@ -62,7 +63,7 @@ class MonsterHealthComponent extends Component {
   }
 
   getMonsterType(monsterName) {
-    return MONSTER_STATS.MONSTERS.monsters[monsterName];
+    return MONSTERS.monsters[monsterName];
   }
 
   getMonsterLevelStats(monster) {
@@ -279,8 +280,8 @@ class MonsterHealthComponent extends Component {
     return displayedMonstersHTML;
   }
 
-  getScenarioDetails(scenario) {
-    return MONSTER_STATS.SCENARIO_MONSTERS[scenario];
+  getScenarioMonsters(scenario) {
+    return SCENARIOS[scenario].monsters;
   }
 
   scenarioGo() {
@@ -290,12 +291,8 @@ class MonsterHealthComponent extends Component {
     gameCopy.monsterHealth.monsters = {};
 
     // find all the monster types that are in this scenario by default
-    let scenarioDetails = this.getScenarioDetails(gameCopy.monsterHealth.scenario - 1); // array starts with scenario 1 at first index, so use -1
-
-    let monsterNames = [];
-    for (let i=0; i<scenarioDetails.decks.length; i++) {
-      monsterNames.push(scenarioDetails.decks[i].name);
-    }
+    const decks = this.getScenarioMonsters(monsterHealthCopy.scenario);
+    const monsterNames = _.pluck(decks, 'name');
 
     monsterNames.sort(function(a, b) {
       let aName = a.toLowerCase();
@@ -783,8 +780,8 @@ class MonsterHealthComponent extends Component {
   makeMonsterChooserButtons() {
     let buttons = [];
 
-    for (let monsterName in MONSTER_STATS.MONSTERS.monsters) {
-      if (MONSTER_STATS.MONSTERS.monsters.hasOwnProperty(monsterName)) {
+    for (let monsterName in MONSTERS.monsters) {
+      if (MONSTERS.monsters.hasOwnProperty(monsterName)) {
         buttons.push(this.makeMonsterChooserButton(monsterName));
       }
     }
