@@ -36,6 +36,25 @@ import generalShield from '../../images/icons/general/general-small-shield.png';
 import generalTarget from '../../images/icons/general/general-small-target.png';
 import generalPlusOne from '../../images/icons/general/general-small-plus-one.png';
 
+import classBrute from '../../images/icons/classes/brute.png';
+import classTinkerer from '../../images/icons/classes/tinkerer.png';
+import classSpellweaver from '../../images/icons/classes/spellweaver.png';
+import classScoundrel from '../../images/icons/classes/scoundrel.png';
+import classCragheart from '../../images/icons/classes/cragheart.png';
+import classMindthief from '../../images/icons/classes/mindthief.png';
+import classSun from '../../images/icons/classes/sun.png';
+import classLightning from '../../images/icons/classes/lightning.png';
+import class3Spears from '../../images/icons/classes/3spears.png';
+import classCircles from '../../images/icons/classes/circles.png';
+import classEclipse from '../../images/icons/classes/eclipse.png';
+import classCthulhu from '../../images/icons/classes/cthulhu.png';
+import classMusic from '../../images/icons/classes/music.png';
+import classAngryface from '../../images/icons/classes/angryface.png';
+import classSaw from '../../images/icons/classes/saw.png';
+import classTriangles from '../../images/icons/classes/triangles.png';
+import classTwomini from '../../images/icons/classes/twomini.png';
+import classEye from '../../images/icons/classes/eye.png';
+
 const icons = {
   elementAir: elementAir,
   elementAll: elementAll,
@@ -72,10 +91,28 @@ const icons = {
   generalShield: generalShield,
   generalTarget: generalTarget,
   generalPlusOne: generalPlusOne,
+
+  classBrute,
+  classTinkerer,
+  classSpellweaver,
+  classScoundrel,
+  classCragheart,
+  classMindthief,
+  classSun,
+  classLightning,
+  class3Spears,
+  classCircles,
+  classEclipse,
+  classCthulhu,
+  classMusic,
+  classAngryface,
+  classSaw,
+  classTriangles,
+  classTwomini,
+  classEye,
 };
 
 class GloomhavenIconComponent extends Component {
-
   findIcon() {
     return icons[this.props.icon];
   }
