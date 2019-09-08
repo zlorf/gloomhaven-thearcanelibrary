@@ -1,12 +1,14 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import GameConstants from '../constants/GameConstants';
 import { EventEmitter } from 'events';
+import {GLOBAL_ACHIEVEMENTS} from '../components/Achievements';
 
 const CHANGE_GAME_EVENT = "changeGame";
 const MAX_PROSPERITY = 64;
 
 // default object avoids null issues throughout app before a game is loaded
 let _game = Object.assign({
+  "version": 0,
   "name": "",
   "prosperity": 0,
   "donations": 0,
@@ -24,7 +26,32 @@ let _game = Object.assign({
     "scenario": -1,
     "monsters": {}
   }
-}, getGameLocalStorage());
+}, upgradeGame(getGameLocalStorage()));
+
+function upgradeGame(game) {
+  if (!game.donations) {
+    game.donations = 0;
+  }
+  if (!game.version) {
+    game.version = 0;
+  }
+  if (game.version === 0) {
+    // convert old global achievements into the new one (reference: https://boardgamegeek.com/thread/1761512/official-second-printing-change-log)
+    if (game.globalAchievements[GLOBAL_ACHIEVEMENTS.THE_RIFT_CLOSED] || game.globalAchievements[GLOBAL_ACHIEVEMENTS.THE_DEMON_DETHRONED]) {
+      // give the new achievement
+      game.globalAchievements[GLOBAL_ACHIEVEMENTS.THE_RIFT_NEUTRALIZED] = true;
+
+      // clear the old achievements to reduce confusion
+      game.globalAchievements[GLOBAL_ACHIEVEMENTS.THE_RIFT_CLOSED] = false;
+      game.globalAchievements[GLOBAL_ACHIEVEMENTS.THE_DEMON_DETHRONED] = false;
+    }
+
+    if (game.monsterHealth && !game.monsterHealth.defaultNumPlaying) {
+      game.monsterHealth.defaultNumPlaying = 4;
+    }
+  }
+  return game;
+}
 
 function setGame(game) {
   setGameLocalStorage(game);
@@ -82,7 +109,8 @@ const GameStore = new GameStoreClass();
 GameStore.dispatchToken = AppDispatcher.register(action => {
   switch(action.actionType) {
     case GameConstants.RECEIVE_GAME:
-      setGame(action.game);
+      // if required, convert an old save game to a new save game
+      setGame(upgradeGame(action.game));
 
       // We need to call emitGameChange so the event listener knows that a change has been made
       GameStore.emitGameChange();
