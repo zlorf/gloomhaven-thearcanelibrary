@@ -8,7 +8,7 @@ const MAX_PROSPERITY = 64;
 
 // default object avoids null issues throughout app before a game is loaded
 let _game = Object.assign({
-  "version": 0,
+  "version": 1,
   "name": "",
   "prosperity": 0,
   "donations": 0,
@@ -49,6 +49,20 @@ function upgradeGame(game) {
     if (game.monsterHealth && !game.monsterHealth.defaultNumPlaying) {
       game.monsterHealth.defaultNumPlaying = 4;
     }
+
+    // convert kickstarter/solo scenarios to new number
+    const updater = (num) => {
+      if (num >= 96 && num <= 105) {
+        return 800 + num - 95;
+      }
+      if (num >= 106 && num <= 122) {
+        return 900 + num - 105;
+      }
+      return num;
+    }
+    game.scenariosUnlocked = game.scenariosUnlocked.map(updater);
+    game.scenariosComplete = game.scenariosComplete.map(updater);
+    game.version = 1;
   }
   return game;
 }

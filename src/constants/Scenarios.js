@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import {GLOBAL_ACHIEVEMENTS} from './Achievements';
 import {PARTY_ACHIEVEMENTS} from './Party';
 
@@ -1560,3 +1561,10 @@ for (const [i, scenario] of kickstarter_scenarios.entries()) {
 for (const [i, scenario] of solo_scenarios.entries()) {
   SCENARIOS[SOLO_PREFIX + i] = scenario;
 }
+
+export const RANGES = [
+  _.range(1, FC_START),
+  _.range(FC_START, FC_END + 1).concat([FC_CHALLENGE]),
+  _.range(SOLO_PREFIX, SOLO_PREFIX + solo_scenarios.length),
+  _.range(KICKSTARTER_PREFIX, KICKSTARTER_PREFIX + kickstarter_scenarios.length),
+];

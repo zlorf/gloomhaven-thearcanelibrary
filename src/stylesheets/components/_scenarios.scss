@@ -23,5 +23,11 @@
 			white-space: normal;
 		}
 	}
+	.gloomhaven-icon-img {
+		margin-right: 5px;
+		+ span, & {
+			vertical-align: top;
+			line-height: 20px;
+		}
+	}
 }
-
