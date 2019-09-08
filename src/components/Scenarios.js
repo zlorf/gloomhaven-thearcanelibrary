@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
 import GameStore from '../stores/GameStore';
 import GameActions from '../actions/GameActions';
-import * as ACHIEVEMENTS from './Achievements';
-import * as PARTY from './Party';
+import * as ACHIEVEMENTS from '../constants/Achievements';
+import * as PARTY from '../constants/Party';
 
 export const SCENARIOS = [
   {}, // dummy scenario 0, just to make indexing by scenario number easier - eg. scenarios[1] refers to scenario number 1

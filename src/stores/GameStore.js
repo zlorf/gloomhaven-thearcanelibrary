@@ -1,7 +1,7 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import GameConstants from '../constants/GameConstants';
 import { EventEmitter } from 'events';
-import {GLOBAL_ACHIEVEMENTS} from '../components/Achievements';
+import {GLOBAL_ACHIEVEMENTS} from '../constants/Achievements';
 
 const CHANGE_GAME_EVENT = "changeGame";
 const MAX_PROSPERITY = 64;
