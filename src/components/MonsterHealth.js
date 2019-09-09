@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
+import _ from 'underscore';
 import { Grid, Row, Col, Button, ProgressBar, Modal } from 'react-bootstrap';
-import GameStore from '../stores/GameStore';
-import GameActions from '../actions/GameActions';
+import GameComponent from './GameComponent';
 import GloomhavenIcon from '../components/utils/GloomhavenIcon';
 import {MONSTERS} from '../constants/MonsterStats';
-import {SCENARIOS} from '../constants/Scenarios';
+import {SCENARIOS, RANGES} from '../constants/Scenarios';
 
 const iconWidth = "30px";
 const iconWidthSmall = "18px";
 
-class MonsterHealthComponent extends Component {
-
+class MonsterHealthComponent extends GameComponent {
   constructor() {
     super();
 
-    this.state = {
-      game: GameStore.getGame(),
+   // monsterHealth is already present in the state.
+   Object.assign(this.state, {
       displayMonsterType: "ACTIVE",
       statusTokenPopup: "",
       statusTokensEnabled: [],
@@ -23,33 +22,28 @@ class MonsterHealthComponent extends Component {
       endMonsterRoundToggled: false,
       healToggled: false,
       clearAllStatusEffectsToggled: false
-    } 
+    });
 
-    this.onChange = this.onChange.bind(this);
     this.scenarioGo = this.scenarioGo.bind(this);
   }
 
-  componentWillMount() {
-    GameStore.addGameChangeListener(this.onChange);
+  getStateFromGame(game) {
+    return {
+      monsterHealth: game.monsterHealth || {},
+    };
   }
 
-  componentWillUnmount() {
-    GameStore.removeGameChangeListener(this.onChange);
-  }
-
-  onChange() {
-    this.setState({
-      game: GameStore.getGame()
-    });
+  getGameUpdateFromState(change) {
+    return _.pick(change, 'monsterHealth');
   }
 
   getAllActiveMonsters() {
     let activeMonsterList = [];
 
     // cycle through all the monsters of all different types, looking for the ones that are active
-    for (let monsterNameProperty in this.state.game.monsterHealth.monsters) {
-      if (this.state.game.monsterHealth.monsters.hasOwnProperty(monsterNameProperty)) {
-        let monsterRecords = this.state.game.monsterHealth.monsters[monsterNameProperty];
+    for (let monsterNameProperty in this.state.monsterHealth.monsters) {
+      if (this.state.monsterHealth.monsters.hasOwnProperty(monsterNameProperty)) {
+        let monsterRecords = this.state.monsterHealth.monsters[monsterNameProperty];
 
         let activeMonsterRecords = monsterRecords.filter(function(currentValue, index) {
           return currentValue.alive;
@@ -111,7 +105,6 @@ class MonsterHealthComponent extends Component {
         {buttonText} {monsterStatusTokens}
       </Button>
     );
-    
   }
 
   makeMonsterKillButton(monsterToDisplay) {
@@ -152,14 +145,14 @@ class MonsterHealthComponent extends Component {
   }
 
   makeMonsterHealthProgressBar(monsterToDisplay) {
-    let gameCopy = this.state.game;
+    let monsterHealth = this.state.monsterHealth;
     let monsterType = this.getMonsterType(monsterToDisplay.name);
     let monsterLevelStats = this.getMonsterLevelStats(monsterToDisplay);
 
     let maxHealth = 0;
 
     if (monsterType.isBoss) {
-      maxHealth = this.calculateBossHealth(monsterLevelStats.health, monsterToDisplay.level, gameCopy.monsterHealth.defaultNumPlaying);
+      maxHealth = this.calculateBossHealth(monsterLevelStats.health, monsterToDisplay.level, monsterHealth.defaultNumPlaying);
     }
     else {
       if (monsterToDisplay.elite) {
@@ -254,7 +247,7 @@ class MonsterHealthComponent extends Component {
       displayedMonstersData = this.getAllActiveMonsters();
     }
     else {
-      displayedMonstersData = this.state.game.monsterHealth.monsters[this.state.displayMonsterType];
+      displayedMonstersData = this.state.monsterHealth.monsters[this.state.displayMonsterType];
     }
 
     // ensure that monsters are sorted alphabetically by name and then by their number
@@ -285,53 +278,53 @@ class MonsterHealthComponent extends Component {
   }
 
   scenarioGo() {
-    let gameCopy = this.state.game;
+    this.setStateAndUpdateGame((state) => {
+      let monsterHealthCopy = Object.assign({}, state.monsterHealth);
 
-    // first clear all existing monsters
-    gameCopy.monsterHealth.monsters = {};
+      // first clear all existing monsters
+      monsterHealthCopy.monsters = {};
 
-    // find all the monster types that are in this scenario by default
-    const decks = this.getScenarioMonsters(monsterHealthCopy.scenario);
-    const monsterNames = _.pluck(decks, 'name');
+      // find all the monster types that are in this scenario by default
+      const decks = this.getScenarioMonsters(monsterHealthCopy.scenario);
+      const monsterNames = _.pluck(decks, 'name');
 
-    monsterNames.sort(function(a, b) {
-      let aName = a.toLowerCase();
-      let bName = b.toLowerCase();
+      monsterNames.sort(function(a, b) {
+        let aName = a.toLowerCase();
+        let bName = b.toLowerCase();
 
-      if (aName < bName) {return -1;}
-      if (aName > bName) {return 1;}
-      return 0;
-    });
+        if (aName < bName) {return -1;}
+        if (aName > bName) {return 1;}
+        return 0;
+      });
 
-    for (let i=0; i<monsterNames.length; i++) {
-      let monsterName = monsterNames[i];
+      for (let i=0; i<monsterNames.length; i++) {
+        let monsterName = monsterNames[i];
 
-      // find the monsters stats in the data structure
-      let monsterType = this.getMonsterType(monsterName);
+        // find the monsters stats in the data structure
+        let monsterType = this.getMonsterType(monsterName);
 
-      let monsters = [];
+        let monsters = [];
 
-      for (let j=0; j<monsterType.standeeCount; j++) {
-        // add a monster record to the data structure
-        monsters.push({
-          name: monsterName,
-          number: j + 1,
-          elite: false,
-          level: gameCopy.monsterHealth.defaultScenarioLevel,
-          alive: false,
-          damage: 0,
-          statusTokens: []
-        });
+        for (let j=0; j<monsterType.standeeCount; j++) {
+          // add a monster record to the data structure
+          monsters.push({
+            name: monsterName,
+            number: j + 1,
+            elite: false,
+            level: monsterHealthCopy.defaultScenarioLevel,
+            alive: false,
+            damage: 0,
+            statusTokens: []
+          });
+        }
+
+        monsterHealthCopy.monsters[monsterName] = monsters;
       }
 
-      gameCopy.monsterHealth.monsters[monsterName] = monsters;
-    }
-
-    this.setState({
-      game: gameCopy,
-      displayMonsterType: "ACTIVE"
-    }, function() {
-      GameActions.changeGame(this.state.game);
+      return {
+        monsterHealth: monsterHealthCopy,
+        displayMonsterType: "ACTIVE"
+      };
     });
   }
 
@@ -379,84 +372,73 @@ class MonsterHealthComponent extends Component {
     );
   }
 
-  levelButtonClick(value) {
-    let gameCopy = this.state.game;
-    gameCopy.monsterHealth.defaultScenarioLevel = value;
+  setMonsterHealthState(mutator) {
+    this.setStateAndUpdateGame((state) => {
+      let monsterHealthCopy = Object.assign({}, state.monsterHealth);
+      mutator(monsterHealthCopy);
+      return {
+        monsterHealth: monsterHealthCopy
+      }
+    });
+  }
 
-    this.updateGame(gameCopy);
+  levelButtonClick(value) {
+    this.setMonsterHealthState((monsterHealth) => {
+      monsterHealth.defaultScenarioLevel = value;
+    });
   }
 
   numCharactersButtonClick(value) {
-    let gameCopy = this.state.game;
-    gameCopy.monsterHealth.defaultNumPlaying = value;
-
-    this.updateGame(gameCopy);
+    this.setMonsterHealthState((monsterHealth) => {
+      monsterHealth.defaultNumPlaying = value;
+    });
   }
 
   killMonster(monster) {
-    let gameCopy = this.state.game;
-
-    let monsterIndex = monster.number - 1;
-
-    gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = false;
-    gameCopy.monsterHealth.monsters[monster.name][monsterIndex].damage = 0;
-    gameCopy.monsterHealth.monsters[monster.name][monsterIndex].statusTokens = [];
-
-    this.updateGame(gameCopy);
-
+    this.setMonsterHealthState((monsterHealth) => {
+      monster.alive = false;
+      monster.damage = 0;
+      monster.statusTokens = [];
+    });
     this.closeConfirmKillMonster();
   }
 
   changeMonsterScenarioLevel(monster) {
-    let gameCopy = this.state.game;
-    let monsterIndex = monster.number - 1;
-
-    let newLevel = gameCopy.monsterHealth.monsters[monster.name][monsterIndex].level + 1;
-    newLevel %= 8;
-
-    gameCopy.monsterHealth.monsters[monster.name][monsterIndex].level = newLevel;
-
-    this.updateGame(gameCopy);
+    this.setMonsterHealthState((monsterHealth) => {
+      monster.level = (monster.level + 1) % 8;
+    });
   }
 
   healMonster(monster) {
-    let gameCopy = this.state.game;
-
-    let monsterIndex = monster.number - 1;
-
-    let poisonIndex = monster.statusTokens.indexOf("statusEffectPoison");
-
-    let healDamage = true;
-    if (poisonIndex > -1) {
-      // poison blocks heal
-      healDamage = false;
-
-      // remove poison
-      gameCopy.monsterHealth.monsters[monster.name][monsterIndex].statusTokens.splice(poisonIndex, 1);
-    }
-
-    let woundIndex = monster.statusTokens.indexOf("statusEffectWound");
-
-    if (woundIndex > -1) {
-      // remove wound
-      gameCopy.monsterHealth.monsters[monster.name][monsterIndex].statusTokens.splice(woundIndex, 1);
-    }
-
-    this.setState({
-      game: gameCopy
-    }, function() {
+    this.setMonsterHealthState((monsterHealth) => {
+      let poisonIndex = monster.statusTokens.indexOf("statusEffectPoison");
+      let woundIndex = monster.statusTokens.indexOf("statusEffectWound");
+      let healDamage = true;
+      if (poisonIndex > -1) {
+        // poison blocks heal
+        healDamage = false;
+        // remove poison
+        monster.statusTokens.splice(poisonIndex, 1);
+      }
+      if (woundIndex > -1) {
+        // remove wound
+        monster.statusTokens.splice(woundIndex, 1);
+      }
       if (healDamage) {
-        this.changeMonsterDamage(monster, -this.state.healAmount);
+        this.changeMonsterDamageInternal(monster, -this.state.healAmount);
       }
     });
   }
 
   changeMonsterDamage(monster, damageAmount) {
-    let gameCopy = this.state.game;
-    
+    this.setMonsterHealthState((monsterHealth) => {
+      this.changeMonsterDamageInternal(monster, damageAmount);
+    });
+  }
+
+  changeMonsterDamageInternal(monster, damageAmount) {
     let monsterLevelStats = this.getMonsterLevelStats(monster);
     let monsterType = this.getMonsterType(monster.name);
-    let monsterIndex = monster.number - 1;
     let damage = monster.damage + damageAmount;
 
     let health = 0;
@@ -468,7 +450,7 @@ class MonsterHealthComponent extends Component {
         health = monsterLevelStats.elite.health;
       }
       else {
-        health = monsterLevelStats.normal.health; 
+        health = monsterLevelStats.normal.health;
       }
     }
 
@@ -479,11 +461,7 @@ class MonsterHealthComponent extends Component {
       damage = 0;
     }
 
-    if (gameCopy.monsterHealth.monsters[monster.name][monsterIndex].damage !== damage) {
-      gameCopy.monsterHealth.monsters[monster.name][monsterIndex].damage = damage;
-
-      this.updateGame(gameCopy);
-    }
+    monster.damage = damage;
   }
 
   clearStatusEffectToggles() {
@@ -517,54 +495,50 @@ class MonsterHealthComponent extends Component {
   }
 
   clearAllStatusEffectsForMonster(monster) {
-    monster.statusTokens = [];
-
-    this.updateGame(this.state.game);
+    this.setMonsterHealthState((monsterHealth) => {
+      monster.statusTokens = [];
+    });
   }
 
   toggleStatusToken(statusToken, monster) {
-    // for backwards compatibility
-    if (!monster.statusTokens) {
-      monster.statusTokens = [];
-    }
+    this.setMonsterHealthState((monsterHealth) => {
+      // for backwards compatibility
+      if (!monster.statusTokens) {
+        monster.statusTokens = [];
+      }
 
-    let index = monster.statusTokens.indexOf(statusToken);
-    if (index >= 0) {
-      // remove this status token from monster
-      monster.statusTokens.splice(index, 1);
-    }
-    else {
-      // add this status token to monster
-      monster.statusTokens.push(statusToken);
-    }
-
-    this.updateGame(this.state.game);
+      let index = monster.statusTokens.indexOf(statusToken);
+      if (index >= 0) {
+        // remove this status token from monster
+        monster.statusTokens.splice(index, 1);
+      }
+      else {
+        // add this status token to monster
+        monster.statusTokens.push(statusToken);
+      }
+    });
   }
 
   endRoundForMonster(monster) {
-    let poisoned = monster.statusTokens.indexOf("statusEffectPoison") > -1;
-    let wounded = monster.statusTokens.indexOf("statusEffectWound") > -1;
+    this.setMonsterHealthState((monsterHealth) => {
+      let poisoned = monster.statusTokens.indexOf("statusEffectPoison") > -1;
+      let wounded = monster.statusTokens.indexOf("statusEffectWound") > -1;
 
-    // remove everything except poison and wound
+      // remove everything except poison and wound
+      monster.statusTokens = [];
 
-    monster.statusTokens = [];
+      if (poisoned) {
+        monster.statusTokens.push("statusEffectPoison");
+      }
 
-    if (poisoned) {
-      monster.statusTokens.push("statusEffectPoison");
-    }
-
-    if (wounded) {
-      monster.statusTokens.push("statusEffectWound");
-    }
-
-    this.updateGame(this.state.game);
+      if (wounded) {
+        monster.statusTokens.push("statusEffectWound");
+      }
+    });
   }
 
   toggleMonster(monster) {
-    let gameCopy = this.state.game;
-
     let monsterType = this.getMonsterType(monster.name);
-    let monsterIndex = monster.number - 1;
 
     if (this.isDisplayActiveOnly()) {
       // we're display all active monsters
@@ -597,59 +571,50 @@ class MonsterHealthComponent extends Component {
     }
     else {
       // if we're displaying only monsters of a particular type, then this button toggles between normal/elite/summon/dead
+      this.setMonsterHealthState((monsterHealth) => {
+        if (monsterType.isBoss) {
+          // boss monster: dead -> alive (normal) -> dead -> ...
 
-      if (monsterType.isBoss) {
-        // boss monster: dead -> alive (normal) -> dead -> ...
-
-        if (!monster.alive) {
-          // dead -> alive (normal)
-          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = true;
+          if (!monster.alive) {
+            // dead -> alive (normal)
+            monster.alive = true;
+          }
+          else {
+            // alive (normal) -> dead
+            monster.alive = false;
+          }
         }
         else {
-          // alive (normal) -> dead
-          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = false;
-        }
-      }
-      else {
-        // regular monster: dead -> alive (normal) -> alive (elite) -> alive (normal, summon) -> alive (elite, summon) -> dead -> ...
+          // regular monster: dead -> alive (normal) -> alive (elite) -> alive (normal, summon) -> alive (elite, summon) -> dead -> ...
 
-        if (!monster.alive) {
-          // dead -> alive (normal)
-          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = true;
-          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = false;
+          if (!monster.alive) {
+            // dead -> alive (normal)
+            monster.alive = true;
+            monster.elite = false;
+          }
+          else if (!monster.elite && !monster.summon) {
+            // alive (normal) -> alive (elite)
+            monster.elite = true;
+          }
+          else if (monster.elite && !monster.summon) {
+            // alive (elite) -> alive (normal, summon)
+            monster.elite = false;
+            monster.summon = true;
+          }
+          else if (!monster.elite && monster.summon) {
+            // alive (normal, summon) -> alive (elite, summon)
+            monster.elite = true;
+          }
+          else {
+            // alive (elite, summon) -> dead
+            monster.alive = false;
+            monster.elite = false;
+            monster.summon = false;
+            monster.damage = 0;
+          }
         }
-        else if (!monster.elite && !monster.summon) {
-          // alive (normal) -> alive (elite)
-          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = true;
-        }
-        else if (monster.elite && !monster.summon) {
-          // alive (elite) -> alive (normal, summon)
-          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = false;
-          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].summon = true;
-        }
-        else if (!monster.elite && monster.summon) {
-          // alive (normal, summon) -> alive (elite, summon)
-          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = true;
-        }
-        else {
-          // alive (elite, summon) -> dead
-          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = false;
-          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = false;
-          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].summon = false;
-          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].damage = 0;
-        }
-      }
+      });
     }
-
-    this.updateGame(gameCopy);
-  }
-
-  updateGame(gameCopy) {
-    this.setState({
-      game: gameCopy
-    }, function() {
-      GameActions.changeGame(this.state.game);
-    });
   }
 
   closeStatusTokenPopup() {
@@ -740,33 +705,14 @@ class MonsterHealthComponent extends Component {
   }
 
   makeScenarioChooserButtons() {
-    let buttons = [];
-
-    for (let i=1; i<=95; i++) {
-      buttons.push(this.makeScenarioChooserButton(i, i));
-    }
-
-    return buttons;
-  }
-
-  makeKickstarterScenarioChooserButtons() {
-    let buttons = [];
-
-    for (let i=96; i<=105; i++) {
-      buttons.push(this.makeScenarioChooserButton('K' + (i-95), i));
-    }
-
-    return buttons;
-  }
-
-  makeSoloScenarioChooserButtons() {
-    let buttons = [];
-
-    for (let i=106; i<=122; i++) {
-      buttons.push(this.makeScenarioChooserButton('S' + (i-105), i));
-    }
-
-    return buttons;
+    return _.map(RANGES, (nums, rangeIndex) => {
+      const buttons = _.map(nums, (i) => this.makeScenarioChooserButton(SCENARIOS[i].symbol || i, i));
+      return (
+        <Row className="scenario-chooser-container" key={rangeIndex}>
+          {buttons}
+        </Row>
+      );
+    });
   }
 
   makeScenarioChooserButton(buttonText, scenarioNumber) {
@@ -800,7 +746,7 @@ class MonsterHealthComponent extends Component {
 
   makeMonsterChooserButton(monsterName) {
     // is this monster already selected?
-    let selected = this.state.game.monsterHealth.monsters[monsterName];
+    let selected = this.state.monsterHealth.monsters[monsterName];
 
     let buttonClass = "btn-scenario-chooser";
     if (selected) {
@@ -809,66 +755,56 @@ class MonsterHealthComponent extends Component {
 
     return(
       <Col key={monsterName} xs={6}>
-        <Button block className={buttonClass} onClick={() => this.toggleChooseMonster(monsterName)}>{monsterName}</Button>  
+        <Button block className={buttonClass} onClick={() => this.toggleChooseMonster(monsterName)}>{monsterName}</Button>
       </Col>
     );
   }
 
   toggleChooseMonster(monsterName) {
-    let gameCopy = this.state.game;
+    this.setMonsterHealthState((monsterHealth) => {
+      // find the monsters stats in the data structure
+      let monsterType = this.getMonsterType(monsterName);
 
-    // find the monsters stats in the data structure
-    let monsterType = this.getMonsterType(monsterName);
+      if (monsterHealth.monsters[monsterName]) {
+        // we already have this monster - remove it
+        delete monsterHealth.monsters[monsterName];
+      }
+      else {
+        // add this monster to the available types
+        let monsters = [];
 
-    if (gameCopy.monsterHealth.monsters[monsterName]) {
-      // we already have this monster - remove it
-      
-      delete gameCopy.monsterHealth.monsters[monsterName];
-    }
-    else {
-      // add this monster to the available types
+        for (let j=0; j<monsterType.standeeCount; j++) {
+          // add a monster record to the data structure
+          monsters.push({
+            name: monsterName,
+            number: j + 1,
+            elite: false,
+            level: monsterHealth.defaultScenarioLevel,
+            alive: false,
+            damage: 0,
+            statusTokens: []
+          });
+        }
 
-      let monsters = [];
-
-      for (let j=0; j<monsterType.standeeCount; j++) {
-        // add a monster record to the data structure
-        monsters.push({
-          name: monsterName,
-          number: j + 1,
-          elite: false,
-          level: gameCopy.monsterHealth.defaultScenarioLevel,
-          alive: false,
-          damage: 0,
-          statusTokens: []
-        });
+        monsterHealth.monsters[monsterName] = monsters;
       }
 
-      gameCopy.monsterHealth.monsters[monsterName] = monsters;
-    }
-
-    // just clear the scenario since we're no longer sticking with the predefined monsters
-    gameCopy.monsterHealth.scenario = -1;
-
-    this.setState({
-      game: gameCopy
-    }, function() {
-      GameActions.changeGame(this.state.game);
+      // just clear the scenario since we're no longer sticking with the predefined monsters
+      monsterHealth.scenario = -1;
     });
   }
 
   chooseScenario(scenarioNumber) {
-    let gameCopy = this.state.game;
-    gameCopy.monsterHealth.scenario = scenarioNumber;
-    this.updateGame(gameCopy);
-
+    this.setMonsterHealthState((monsterHealth) => {
+      monsterHealth.scenario = scenarioNumber;
+    });
     this.scenarioGo();
-
     this.closeScenarioChooser();
   }
 
   isMonstersChosen() {
-    for (let monster in this.state.game.monsterHealth.monsters) {
-      if (this.state.game.monsterHealth.monsters.hasOwnProperty(monster)) {
+    for (let monster in this.state.monsterHealth.monsters) {
+      if (this.state.monsterHealth.monsters.hasOwnProperty(monster)) {
         return true;
       }
     }
@@ -876,7 +812,7 @@ class MonsterHealthComponent extends Component {
 
   toggleHealChange(change) {
     let newAmount = this.state.healAmount + change;
-    
+
     if (newAmount <= 0) {
       newAmount = 1;
     }
@@ -923,19 +859,19 @@ class MonsterHealthComponent extends Component {
     let scenarioLevelButtons = [];
 
     for (let i=0; i<=7; i++) {
-      scenarioLevelButtons.push(this.createScenarioLevelButton(i, this.state.game.monsterHealth.defaultScenarioLevel));
+      scenarioLevelButtons.push(this.createScenarioLevelButton(i, this.state.monsterHealth.defaultScenarioLevel));
     }
 
     let numCharactersButtons = [];
 
     for (let i=2; i<=4; i++) {
-        numCharactersButtons.push(this.createNumCharactersButton(i, this.state.game.monsterHealth.defaultNumPlaying));
+        numCharactersButtons.push(this.createNumCharactersButton(i, this.state.monsterHealth.defaultNumPlaying));
     }
 
     let monsterHeaderButtons = [];
 
-    for (let monsterNameProperty in this.state.game.monsterHealth.monsters) {
-      if (this.state.game.monsterHealth.monsters.hasOwnProperty(monsterNameProperty)) {
+    for (let monsterNameProperty in this.state.monsterHealth.monsters) {
+      if (this.state.monsterHealth.monsters.hasOwnProperty(monsterNameProperty)) {
           monsterHeaderButtons.push(this.createMonsterHeaderButton(monsterNameProperty));
       }
     }
@@ -946,9 +882,7 @@ class MonsterHealthComponent extends Component {
 
     let statusTokenButtons = this.makeStatusTokenButtons();
 
-    let scenarioChooserButtons = this.makeScenarioChooserButtons();
-    let kickstarterScenarioChooserButtons = this.makeKickstarterScenarioChooserButtons();
-    let soloScenarioChooserButtons = this.makeSoloScenarioChooserButtons();
+    let scenarioChooserButtonsSections = this.makeScenarioChooserButtons();
 
     let monsterChooserButtons = this.makeMonsterChooserButtons();
 
@@ -981,17 +915,7 @@ class MonsterHealthComponent extends Component {
               </Col>
             </Row>
             <hr/>
-            <Row className="scenario-chooser-container">
-              {scenarioChooserButtons}
-            </Row>
-            <hr/>
-            <Row className="scenario-chooser-container">
-              {kickstarterScenarioChooserButtons}
-            </Row>
-            <hr/>
-            <Row className="scenario-chooser-container">
-              {soloScenarioChooserButtons}
-            </Row>
+            {scenarioChooserButtonsSections}
           </Modal.Body>
           <Modal.Footer>
             <Button className="btn-lightning" onClick={() => this.closeScenarioChooser()}>Close</Button>
@@ -1061,7 +985,7 @@ class MonsterHealthComponent extends Component {
               </Row>
             </Col>
           </Row>
-          {this.state.game.monsterHealth.defaultScenarioLevel > -1 && this.state.game.monsterHealth.defaultNumPlaying > -1 &&
+          {this.state.monsterHealth.defaultScenarioLevel > -1 && this.state.monsterHealth.defaultNumPlaying > -1 &&
             <Row className="monster-health-row">
               <Col xs={6} md={6}>
                 <Button className="btn-scoundrel" block onClick={() => this.showScenarioChooser()}>Scenario</Button>
@@ -1071,7 +995,7 @@ class MonsterHealthComponent extends Component {
               </Col>
             </Row>
           }
-          {(this.state.game.monsterHealth.scenario > -1 || this.isMonstersChosen()) &&
+          {(this.state.monsterHealth.scenario > -1 || this.isMonstersChosen()) &&
             <Row className="monster-health-row">
               {monsterHeaderButtons}
             </Row>
@@ -1080,7 +1004,7 @@ class MonsterHealthComponent extends Component {
             {displayedMonsterSections}
           </Row>
           <hr/>
-          {(this.state.game.monsterHealth.scenario > -1 || this.isMonstersChosen()) &&
+          {(this.state.monsterHealth.scenario > -1 || this.isMonstersChosen()) &&
             <Row className="status-token-buttons">
               <Col xs={12} md={4}>
                 <Button block onClick={() => this.clearStatusEffectToggles()}>Unselect All</Button>
