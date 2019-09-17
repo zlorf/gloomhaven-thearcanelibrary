@@ -8367,6 +8367,204 @@ export const MONSTERS = {
         }
       ]
     },
+    "Manifestation of Corruption": {
+      "standeeCount": 1,
+      "isBoss": true,
+      "level": [
+        {
+          "level": 0,
+          "health": "22xC",
+          "move": 0,
+          "attack": 5,
+          "range": 3,
+          "attributes": [
+            "Flying"
+          ],
+          "special1": [
+            "Play top two cards, using the first card as initiative.",
+            "Perform the bottom action of the first card, then the top action of the second card."
+          ],
+          "immunities": [
+            "%wound%",
+            "%disarm%",
+            "%muddle%",
+            "%poison%",
+            "%immobilize%",
+            "%stun%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 1,
+          "health": "27xC",
+          "move": 0,
+          "attack": 5,
+          "range": 4,
+          "attributes": [
+            "Flying"
+          ],
+          "special1": [
+            "Play top two cards, using the first card as initiative.",
+            "Perform the bottom action of the first card, then the top action of the second card."
+          ],
+          "immunities": [
+            "%wound%",
+            "%disarm%",
+            "%muddle%",
+            "%poison%",
+            "%immobilize%",
+            "%stun%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 2,
+          "health": "32xC",
+          "move": 0,
+          "attack": 6,
+          "range": 4,
+          "attributes": [
+            "Flying"
+          ],
+          "special1": [
+            "Play top two cards, using the first card as initiative.",
+            "Perform the bottom action of the first card, then the top action of the second card."
+          ],
+          "immunities": [
+            "%wound%",
+            "%disarm%",
+            "%muddle%",
+            "%poison%",
+            "%immobilize%",
+            "%stun%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 3,
+          "health": "38xC",
+          "move": 0,
+          "attack": 6,
+          "range": 5,
+          "attributes": [
+            "Flying"
+          ],
+          "special1": [
+            "Play top two cards, using the first card as initiative.",
+            "Perform the bottom action of the first card, then the top action of the second card."
+          ],
+          "immunities": [
+            "%wound%",
+            "%disarm%",
+            "%muddle%",
+            "%poison%",
+            "%immobilize%",
+            "%stun%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 4,
+          "health": "44xC",
+          "move": 0,
+          "attack": 7,
+          "range": 5,
+          "attributes": [
+            "Flying"
+          ],
+          "special1": [
+            "Play top two cards, using the first card as initiative.",
+            "Perform the bottom action of the first card, then the top action of the second card."
+          ],
+          "immunities": [
+            "%wound%",
+            "%disarm%",
+            "%muddle%",
+            "%poison%",
+            "%immobilize%",
+            "%stun%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 5,
+          "health": "49xC",
+          "move": 0,
+          "attack": 7,
+          "range": 6,
+          "attributes": [
+            "Flying"
+          ],
+          "special1": [
+            "Play top two cards, using the first card as initiative.",
+            "Perform the bottom action of the first card, then the top action of the second card."
+          ],
+          "immunities": [
+            "%wound%",
+            "%disarm%",
+            "%muddle%",
+            "%poison%",
+            "%immobilize%",
+            "%stun%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 6,
+          "health": "56xC",
+          "move": 0,
+          "attack": 8,
+          "range": 6,
+          "attributes": [
+            "Flying"
+          ],
+          "special1": [
+            "Play top two cards, using the first card as initiative.",
+            "Perform the bottom action of the first card, then the top action of the second card."
+          ],
+          "immunities": [
+            "%wound%",
+            "%disarm%",
+            "%muddle%",
+            "%poison%",
+            "%immobilize%",
+            "%stun%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 7,
+          "health": "65xC",
+          "move": 0,
+          "attack": 8,
+          "range": 7,
+          "attributes": [
+            "Flying"
+          ],
+          "special1": [
+            "Play top two cards, using the first card as initiative.",
+            "Perform the bottom action of the first card, then the top action of the second card."
+          ],
+          "immunities": [
+            "%wound%",
+            "%disarm%",
+            "%muddle%",
+            "%poison%",
+            "%immobilize%",
+            "%stun%",
+            "%curse%"
+          ],
+          "notes": ""
+        }
+      ]
+    },
     "Merciless Overseer": {
       "standeeCount": 1,
       "isBoss": true,
