@@ -7749,6 +7749,244 @@ export const MONSTERS = {
         }
       ]
     },
+    "Human Commander": {
+      "standeeCount": 1,
+      "isBoss": true,
+      "level": [
+        {
+          "level": 0,
+          "health": "6xC",
+          "move": 2,
+          "attack": 4,
+          "range": 0,
+          "attributes": [
+            "%shield% 2"
+          ],
+          "special1": [
+            "%move% +0",
+            "%attack% +0",
+            "Summon City Guard"
+          ],
+          "special2": [
+            "Summon City Archer",
+            "%move% -1",
+            "%shield% 1, Affect all adjacent allies"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%poison%",
+            "%stun%",
+            "%immobilize%",
+            "%wound%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 1,
+          "health": "8xC",
+          "move": 3,
+          "attack": 4,
+          "range": 0,
+          "attributes": [
+            "%shield% 2"
+          ],
+          "special1": [
+            "%move% +0",
+            "%attack% +0",
+            "Summon City Guard"
+          ],
+          "special2": [
+            "Summon City Archer",
+            "%move% -1",
+            "%shield% 1, Affect all adjacent allies"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%poison%",
+            "%stun%",
+            "%immobilize%",
+            "%wound%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 2,
+          "health": "10xC",
+          "move": 3,
+          "attack": 5,
+          "range": 0,
+          "attributes": [
+            "%shield% 2"
+          ],
+          "special1": [
+            "%move% +0",
+            "%attack% +0",
+            "Summon City Guard"
+          ],
+          "special2": [
+            "Summon City Archer",
+            "%move% -1",
+            "%shield% 1, Affect all adjacent allies"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%poison%",
+            "%stun%",
+            "%immobilize%",
+            "%wound%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 3,
+          "health": "11xC",
+          "move": 4,
+          "attack": 5,
+          "range": 0,
+          "attributes": [
+            "%shield% 3"
+          ],
+          "special1": [
+            "%move% +0",
+            "%attack% +0",
+            "Summon City Guard"
+          ],
+          "special2": [
+            "Summon City Archer",
+            "%move% -1",
+            "%shield% 2, Affect all adjacent allies"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%poison%",
+            "%stun%",
+            "%immobilize%",
+            "%wound%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 4,
+          "health": "13xC",
+          "move": 4,
+          "attack": 6,
+          "range": 0,
+          "attributes": [
+            "%shield% 3"
+          ],
+          "special1": [
+            "%move% +0",
+            "%attack% +0",
+            "Summon City Guard"
+          ],
+          "special2": [
+            "Summon City Archer",
+            "%move% -1",
+            "%shield% 2, Affect all adjacent allies"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%poison%",
+            "%stun%",
+            "%immobilize%",
+            "%wound%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 5,
+          "health": "14xC",
+          "move": 4,
+          "attack": 6,
+          "range": 0,
+          "attributes": [
+            "%shield% 4"
+          ],
+          "special1": [
+            "%move% +0",
+            "%attack% +0",
+            "Summon City Guard"
+          ],
+          "special2": [
+            "Summon City Archer",
+            "%move% -1",
+            "%shield% 2, Affect all adjacent allies"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%poison%",
+            "%stun%",
+            "%immobilize%",
+            "%wound%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 6,
+          "health": "17xC",
+          "move": 4,
+          "attack": 7,
+          "range": 0,
+          "attributes": [
+            "%shield% 4"
+          ],
+          "special1": [
+            "%move% +0",
+            "%attack% +0",
+            "Summon City Guard"
+          ],
+          "special2": [
+            "Summon City Archer",
+            "%move% -1",
+            "%shield% 2, Affect all adjacent allies"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%poison%",
+            "%stun%",
+            "%immobilize%",
+            "%wound%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 7,
+          "health": "20xC",
+          "move": 5,
+          "attack": 8,
+          "range": 0,
+          "attributes": [
+            "%shield% 4"
+          ],
+          "special1": [
+            "%move% +0",
+            "%attack% +0",
+            "Summon City Guard"
+          ],
+          "special2": [
+            "Summon City Archer",
+            "%move% -1",
+            "%shield% 3, Affect all adjacent allies"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%poison%",
+            "%stun%",
+            "%immobilize%",
+            "%wound%",
+            "%curse%"
+          ],
+          "notes": ""
+        }
+      ]
+    },
     "Inox Bodyguard": {
       "standeeCount": 2,
       "isBoss": true,
