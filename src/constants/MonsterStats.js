@@ -8945,6 +8945,249 @@ export const MONSTERS = {
         }
       ]
     },
+    "Valrath Commander": {
+      "standeeCount": 1,
+      "isBoss": true,
+      "level": [
+        {
+          "level": 0,
+          "health": "10xC",
+          "move": 2,
+          "attack": 3,
+          "range": 3,
+          "attributes": [
+            "%wound%"
+          ],
+          "special1": [
+            "Summon Valrath Tracker",
+            "%move% -1",
+            "%heal% 2, Affect all adjacent allies"
+          ],
+          "special2": [
+            "%move% +0",
+            "%attack% +0",
+            "Summon Valrath Savage"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%muddle%",
+            "%stun%",
+            "%immobilize%",
+            "%wound%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 1,
+          "health": "12xC",
+          "move": 2,
+          "attack": 4,
+          "range": 3,
+          "attributes": [
+            "%wound%"
+          ],
+          "special1": [
+            "Summon Valrath Tracker",
+            "%move% -1",
+            "%heal% 2, Affect all adjacent allies"
+          ],
+          "special2": [
+            "%move% +0",
+            "%attack% +0",
+            "Summon Valrath Savage"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%muddle%",
+            "%stun%",
+            "%immobilize%",
+            "%wound%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 2,
+          "health": "15xC",
+          "move": 3,
+          "attack": 4,
+          "range": 3,
+          "attributes": [
+            "%wound%"
+          ],
+          "special1": [
+            "Summon Valrath Tracker",
+            "%move% -1",
+            "%heal% 3, Affect all adjacent allies"
+          ],
+          "special2": [
+            "%move% +0",
+            "%attack% +0",
+            "Summon Valrath Savage"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%muddle%",
+            "%stun%",
+            "%immobilize%",
+            "%wound%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 3,
+          "health": "18xC",
+          "move": 3,
+          "attack": 5,
+          "range": 3,
+          "attributes": [
+            "%wound%",
+            "%poison%"
+          ],
+          "special1": [
+            "Summon Valrath Tracker",
+            "%move% -1",
+            "%heal% 3, Affect all adjacent allies"
+          ],
+          "special2": [
+            "%move% +0",
+            "%attack% +0",
+            "Summon Valrath Savage"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%muddle%",
+            "%stun%",
+            "%immobilize%",
+            "%wound%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 4,
+          "health": "21xC",
+          "move": 3,
+          "attack": 5,
+          "range": 4,
+          "attributes": [
+            "%wound%",
+            "%poison%"
+          ],
+          "special1": [
+            "Summon Valrath Tracker",
+            "%move% -1",
+            "%heal% 4, Affect all adjacent allies"
+          ],
+          "special2": [
+            "%move% +0",
+            "%attack% +0",
+            "Summon Valrath Savage"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%muddle%",
+            "%stun%",
+            "%immobilize%",
+            "%wound%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 5,
+          "health": "24xC",
+          "move": 3,
+          "attack": 6,
+          "range": 4,
+          "attributes": [
+            "%wound%",
+            "%poison%"
+          ],
+          "special1": [
+            "Summon Valrath Tracker",
+            "%move% -1",
+            "%heal% 4, Affect all adjacent allies"
+          ],
+          "special2": [
+            "%move% +0",
+            "%attack% +0",
+            "Summon Valrath Savage"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%muddle%",
+            "%stun%",
+            "%immobilize%",
+            "%wound%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 6,
+          "health": "28xC",
+          "move": 4,
+          "attack": 6,
+          "range": 4,
+          "attributes": [
+            "%wound%",
+            "%poison%"
+          ],
+          "special1": [
+            "Summon Valrath Tracker",
+            "%move% -1",
+            "%heal% 4, Affect all adjacent allies"
+          ],
+          "special2": [
+            "%move% +0",
+            "%attack% +0",
+            "Summon Valrath Savage"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%muddle%",
+            "%stun%",
+            "%immobilize%",
+            "%wound%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 7,
+          "health": "33xC",
+          "move": 4,
+          "attack": 7,
+          "range": 5,
+          "attributes": [
+            "%wound%",
+            "%poison%"
+          ],
+          "special1": [
+            "Summon Valrath Tracker",
+            "%move% -1",
+            "%heal% 5, Affect all adjacent allies"
+          ],
+          "special2": [
+            "%move% +0",
+            "%attack% +0",
+            "Summon Valrath Savage"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%muddle%",
+            "%stun%",
+            "%immobilize%",
+            "%wound%",
+            "%curse%"
+          ],
+          "notes": ""
+        }
+      ]
+    },
     "Winged Horror": {
       "standeeCount": 1,
       "isBoss": true,
