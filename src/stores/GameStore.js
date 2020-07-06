@@ -29,6 +29,9 @@ let _game = Object.assign({
 }, upgradeGame(getGameLocalStorage()));
 
 function upgradeGame(game) {
+  if (!game) {
+    return {};
+  }
   if (!game.donations) {
     game.donations = 0;
   }
@@ -77,7 +80,7 @@ function getGameLocalStorage() {
     return JSON.parse(window.localStorage.getItem('game'));
   }
   catch (e) {
-    return { };
+    return null;
   }
 }
 
