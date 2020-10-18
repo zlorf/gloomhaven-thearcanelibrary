@@ -1,4 +1,5 @@
 import _ from 'underscore';
+import ExpansionConstants from './ExpansionConstants';
 import {GLOBAL_ACHIEVEMENTS} from './Achievements';
 import {PARTY_ACHIEVEMENTS} from './Party';
 
@@ -1567,4 +1568,10 @@ export const RANGES = [
   _.range(FC_START, FC_END + 1).concat([FC_CHALLENGE]),
   _.range(SOLO_PREFIX, SOLO_PREFIX + solo_scenarios.length),
   _.range(KICKSTARTER_PREFIX, KICKSTARTER_PREFIX + kickstarter_scenarios.length),
+];
+export const RANGE_TITLES = [
+  ExpansionConstants.BASE,
+  ExpansionConstants.FORGOTTEN_CIRCLES,
+  ExpansionConstants.SOLO,
+  ExpansionConstants.KICKSTARTER,
 ];

@@ -4,7 +4,7 @@ import { Grid, Row, Col, Button, ProgressBar, Modal } from 'react-bootstrap';
 import GameComponent from './GameComponent';
 import GloomhavenIcon from '../components/utils/GloomhavenIcon';
 import {MONSTERS} from '../constants/MonsterStats';
-import {SCENARIOS, RANGES} from '../constants/Scenarios';
+import {SCENARIOS, RANGES, RANGE_TITLES} from '../constants/Scenarios';
 
 const iconWidth = "30px";
 const iconWidthSmall = "18px";
@@ -720,6 +720,7 @@ class MonsterHealthComponent extends GameComponent {
       const buttons = _.map(nums, (i) => this.makeScenarioChooserButton(SCENARIOS[i].symbol || i, i));
       return (
         <Row className="scenario-chooser-container" key={rangeIndex}>
+          <Col xs={12}><h4>{RANGE_TITLES[rangeIndex]}</h4></Col>
           {buttons}
         </Row>
       );
