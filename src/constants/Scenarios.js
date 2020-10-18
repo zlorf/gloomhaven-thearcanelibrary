@@ -2,12 +2,12 @@ import _ from 'underscore';
 import {GLOBAL_ACHIEVEMENTS} from './Achievements';
 import {PARTY_ACHIEVEMENTS} from './Party';
 
-export const KICKSTARTER_PREFIX = 801;
-export const SOLO_PREFIX = 901;
+const KICKSTARTER_PREFIX = 801;
+const SOLO_PREFIX = 901;
 
-export const FC_START = 96;
-export const FC_END = 115;
-export const FC_CHALLENGE = 701;
+const FC_START = 96;
+const FC_END = 115;
+const FC_CHALLENGE = 701;
 
 // Monster decks taken from
 // https://raw.githubusercontent.com/GinoGalotti/gloomycompanion/monster-stats/scenarios.js

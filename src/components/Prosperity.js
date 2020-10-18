@@ -90,35 +90,22 @@ class ProsperityComponent extends GameComponent {
     }
   }
 
-  getScenarioNumber(tresureNumber) {
+  getScenarioNumber(treasureNumber) {
     for (const [number, scenario] of Object.entries(SCENARIOS)) {
       const treasures = scenario.treasures;
-      if (treasures && treasures.indexOf(tresureNumber) >= 0) {
+      if (treasures && treasures.indexOf(treasureNumber) >= 0) {
         return scenario.symbol || number;
       }
     }
-    console.error("Treasure not found for " + tresureNumber + "!");
+    console.error("Treasure not found for " + treasureNumber + "!");
   }
 
   makeTreasureColumn(number, availableTreasures, treasuresInCompleteScenarios) {
-    let unlocked = false;
-    let available = false;
-    let treasureInCompleteScenario = false;
+    const unlocked = this.state.treasuresUnlocked.indexOf(number) >= 0;
+    const available = availableTreasures.indexOf(number) >= 0;
+    const treasureInCompleteScenario = treasuresInCompleteScenarios.indexOf(number) >= 0;
 
-    let treasure = TREASURES[number];
-
-    if (availableTreasures.indexOf(number) >= 0) {
-      available = true;
-    }
-
-    if (treasuresInCompleteScenarios.indexOf(number) >= 0) {
-      treasureInCompleteScenario = true;
-    }
-
-    if (this.state.treasuresUnlocked.indexOf(number) >= 0) {
-      // we have this treasure
-      unlocked = true;
-    }
+    const treasure = TREASURES[number];
 
     let buttonText = number;
     if (unlocked) {
@@ -192,10 +179,10 @@ class ProsperityComponent extends GameComponent {
     let availableTreasures = this.makeAvailableTreasures();
     let treasuresInCompleteScenarios = this.makeTreasuresInCompleteScenarios();
 
-    treasureColumns.push(<Col lg={12} key="t0"><h2>{ExpansionConstants.BASE}</h2></Col>);
+    treasureColumns.push(<Col xs={12} key="t0"><h2>{ExpansionConstants.BASE}</h2></Col>);
     for (let i=1; i<TREASURES.length; i++) {
       if (i === 76) {
-        treasureColumns.push(<Col lg={12} key="t1"><h2>{ExpansionConstants.FORGOTTEN_CIRCLES}</h2></Col>);
+        treasureColumns.push(<Col xs={12} key="t1"><h2>{ExpansionConstants.FORGOTTEN_CIRCLES}</h2></Col>);
       }
       treasureColumns.push(this.makeTreasureColumn(i, availableTreasures, treasuresInCompleteScenarios));
     }
