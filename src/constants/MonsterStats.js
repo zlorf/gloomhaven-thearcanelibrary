@@ -6441,6 +6441,7 @@ export const MONSTERS = {
         }
       ]
     },
+    // Bosses
     "Bandit Commander": {
       "standeeCount": 1,
       "isBoss": true,
@@ -6594,6 +6595,354 @@ export const MONSTERS = {
             "%stun%",
             "%immobilize%",
             "%curse%"
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    "Blood Horror": {
+      "standeeCount": 1,
+      "isBoss": true,
+      "level": [
+        {
+          "level": 0,
+          "health": "7xC",
+          "move": 3,
+          "attack": "C-1",
+          "range": 0,
+          "special1": [
+            "Jump to farthest dead Zealot and revive -or-",
+            "Jump to farthest character and %attack% +0"
+          ],
+          "special2": [
+            "%move% +0",
+            "%attack% +0",
+            "Revive all dead Zealots in room"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%immobilize%",
+            "%muddle%",
+            "%stun%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 1,
+          "health": "10xC",
+          "move": 3,
+          "attack": "C",
+          "range": 0,
+          "special1": [
+            "Jump to farthest dead Zealot and revive -or-",
+            "Jump to farthest character and %attack% +0"
+          ],
+          "special2": [
+            "%move% +0",
+            "%attack% +0",
+            "Revive all dead Zealots in room"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%immobilize%",
+            "%muddle%",
+            "%stun%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 2,
+          "health": "12xC",
+          "move": 4,
+          "attack": "C",
+          "range": 0,
+          "special1": [
+            "Jump to farthest dead Zealot and revive -or-",
+            "Jump to farthest character and %attack% +0"
+          ],
+          "special2": [
+            "%move% +0",
+            "%attack% +0",
+            "Revive all dead Zealots in room"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%immobilize%",
+            "%muddle%",
+            "%stun%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 3,
+          "health": "15xC",
+          "move": 4,
+          "attack": "C+1",
+          "range": 0,
+          "special1": [
+            "Jump to farthest dead Zealot and revive -or-",
+            "Jump to farthest character and %attack% +0"
+          ],
+          "special2": [
+            "%move% +0",
+            "%attack% +0",
+            "Revive all dead Zealots in room"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%immobilize%",
+            "%muddle%",
+            "%stun%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 4,
+          "health": "17xC",
+          "move": 5,
+          "attack": "C+1",
+          "range": 0,
+          "special1": [
+            "Jump to farthest dead Zealot and revive -or-",
+            "Jump to farthest character and %attack% +0"
+          ],
+          "special2": [
+            "%move% +0",
+            "%attack% +0",
+            "Revive all dead Zealots in room"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%immobilize%",
+            "%muddle%",
+            "%stun%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 5,
+          "health": "20xC",
+          "move": 5,
+          "attack": "C+2",
+          "range": 0,
+          "special1": [
+            "Jump to farthest dead Zealot and revive -or-",
+            "Jump to farthest character and %attack% +0"
+          ],
+          "special2": [
+            "%move% +0",
+            "%attack% +0",
+            "Revive all dead Zealots in room"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%immobilize%",
+            "%muddle%",
+            "%stun%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 6,
+          "health": "23xC",
+          "move": 5,
+          "attack": "C+3",
+          "range": 0,
+          "special1": [
+            "Jump to farthest dead Zealot and revive -or-",
+            "Jump to farthest character and %attack% +0"
+          ],
+          "special2": [
+            "%move% +0",
+            "%attack% +0",
+            "Revive all dead Zealots in room"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%immobilize%",
+            "%muddle%",
+            "%stun%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 7,
+          "health": "28xC",
+          "move": 5,
+          "attack": "C+4",
+          "range": 0,
+          "special1": [
+            "Jump to farthest dead Zealot and revive -or-",
+            "Jump to farthest character and %attack% +0"
+          ],
+          "special2": [
+            "%move% +0",
+            "%attack% +0",
+            "Revive all dead Zealots in room"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%immobilize%",
+            "%muddle%",
+            "%stun%"
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    "Blood Tumor": {
+      "standeeCount": 1,
+      "isBoss": true,
+      "level": [
+        {
+          "level": 0,
+          "health": "7xC",
+          "move": 0,
+          "attack": "C-1",
+          "range": 0,
+          "special1": [
+            "%heal% C, Self"
+          ],
+          "special2": [
+            "%heal% 2, Target all allies"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%muddle%",
+            "%stun%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 1,
+          "health": "10xC",
+          "move": 0,
+          "attack": "C",
+          "range": 0,
+          "special1": [
+            "%heal% C, Self"
+          ],
+          "special2": [
+            "%heal% 2, Target all allies"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%muddle%",
+            "%stun%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 2,
+          "health": "12xC",
+          "move": 0,
+          "attack": "C",
+          "range": 0,
+          "special1": [
+            "%heal% C+1, Self"
+          ],
+          "special2": [
+            "%heal% 3, Target all allies"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%muddle%",
+            "%stun%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 3,
+          "health": "15xC",
+          "move": 0,
+          "attack": "C+1",
+          "range": 0,
+          "special1": [
+            "%heal% C+1, Self"
+          ],
+          "special2": [
+            "%heal% 3, Target all allies"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%muddle%",
+            "%stun%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 4,
+          "health": "17xC",
+          "move": 0,
+          "attack": "C+1",
+          "range": 0,
+          "special1": [
+            "%heal% C+2, Self"
+          ],
+          "special2": [
+            "%heal% 4, Target all allies"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%muddle%",
+            "%stun%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 5,
+          "health": "20xC",
+          "move": 0,
+          "attack": "C+2",
+          "range": 0,
+          "special1": [
+            "%heal% C+2, Self"
+          ],
+          "special2": [
+            "%heal% 4, Target all allies"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%muddle%",
+            "%stun%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 6,
+          "health": "23xC",
+          "move": 0,
+          "attack": "C+2",
+          "range": 0,
+          "special1": [
+            "%heal% C+3, Self"
+          ],
+          "special2": [
+            "%heal% 5, Target all allies"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%muddle%",
+            "%stun%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 7,
+          "health": "28xC",
+          "move": 0,
+          "attack": "C+3",
+          "range": 0,
+          "special1": [
+            "%heal% C+3, Self"
+          ],
+          "special2": [
+            "%heal% 5, Target all allies"
+          ],
+          "immunities": [
+            "%disarm%",
+            "%muddle%",
+            "%stun%"
           ],
           "notes": ""
         }
@@ -7504,6 +7853,204 @@ export const MONSTERS = {
             "%disarm%",
             "%immobilize%",
             "%stun%"
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    "First of the Order": {
+      "standeeCount": 1,
+      "isBoss": true,
+      "level": [
+        {
+          "level": 0,
+          "health": "10xC",
+          "move": 2,
+          "attack": 3,
+          "range": 0,
+          "special1": [
+            "All enemies within %range% 2 suffer 2 damage",
+            "Spawn C/2 Black Imps"
+          ],
+          "special2": [
+            "%attack% +0",
+            "%attack% -1 within %range% 2 of target",
+            "%attack% -2 within %range% 2 of target",
+          ],
+          "immunities": [
+            "%disarm%",
+            "%immobilize%",
+            "%muddle%",
+            "%stun%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 1,
+          "health": "14xC",
+          "move": 2,
+          "attack": 4,
+          "range": 0,
+          "special1": [
+            "All enemies within %range% 2 suffer 2 damage",
+            "Spawn C/2 Black Imps"
+          ],
+          "special2": [
+            "%attack% +0",
+            "%attack% -1 within %range% 2 of target",
+            "%attack% -2 within %range% 2 of target",
+          ],
+          "immunities": [
+            "%disarm%",
+            "%immobilize%",
+            "%muddle%",
+            "%stun%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 2,
+          "health": "17xC",
+          "move": 2,
+          "attack": 4,
+          "range": 0,
+          "special1": [
+            "All enemies within %range% 2 suffer 2 damage",
+            "Spawn C/2 Black Imps"
+          ],
+          "special2": [
+            "%attack% +0",
+            "%attack% -1 within %range% 2 of target",
+            "%attack% -2 within %range% 2 of target",
+          ],
+          "immunities": [
+            "%disarm%",
+            "%immobilize%",
+            "%muddle%",
+            "%stun%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 3,
+          "health": "20xC",
+          "move": 2,
+          "attack": 5,
+          "range": 0,
+          "special1": [
+            "All enemies within %range% 2 suffer 2 damage",
+            "Spawn C/2 Black Imps"
+          ],
+          "special2": [
+            "%attack% +0",
+            "%attack% -1 within %range% 2 of target",
+            "%attack% -2 within %range% 2 of target",
+          ],
+          "immunities": [
+            "%disarm%",
+            "%immobilize%",
+            "%muddle%",
+            "%stun%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 4,
+          "health": "24xC",
+          "move": 3,
+          "attack": 5,
+          "range": 0,
+          "special1": [
+            "All enemies within %range% 2 suffer 2 damage",
+            "Spawn C/2 Black Imps"
+          ],
+          "special2": [
+            "%attack% +0",
+            "%attack% -1 within %range% 2 of target",
+            "%attack% -2 within %range% 2 of target",
+          ],
+          "immunities": [
+            "%disarm%",
+            "%immobilize%",
+            "%muddle%",
+            "%stun%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 5,
+          "health": "28xC",
+          "move": 3,
+          "attack": 6,
+          "range": 0,
+          "special1": [
+            "All enemies within %range% 2 suffer 2 damage",
+            "Spawn C/2 Black Imps"
+          ],
+          "special2": [
+            "%attack% +0",
+            "%attack% -1 within %range% 2 of target",
+            "%attack% -2 within %range% 2 of target",
+          ],
+          "immunities": [
+            "%disarm%",
+            "%immobilize%",
+            "%muddle%",
+            "%stun%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 6,
+          "health": "32xC",
+          "move": 3,
+          "attack": 7,
+          "range": 0,
+          "special1": [
+            "All enemies within %range% 2 suffer 2 damage",
+            "Spawn C/2 Black Imps"
+          ],
+          "special2": [
+            "%attack% +0",
+            "%attack% -1 within %range% 2 of target",
+            "%attack% -2 within %range% 2 of target",
+          ],
+          "immunities": [
+            "%disarm%",
+            "%immobilize%",
+            "%muddle%",
+            "%stun%",
+            "%curse%"
+          ],
+          "notes": ""
+        },
+        {
+          "level": 7,
+          "health": "36xC",
+          "move": 3,
+          "attack": 8,
+          "range": 0,
+          "special1": [
+            "All enemies within %range% 2 suffer 2 damage",
+            "Spawn C/2 Black Imps"
+          ],
+          "special2": [
+            "%attack% +0",
+            "%attack% -1 within %range% 2 of target",
+            "%attack% -2 within %range% 2 of target",
+          ],
+          "immunities": [
+            "%disarm%",
+            "%immobilize%",
+            "%muddle%",
+            "%stun%",
+            "%curse%"
           ],
           "notes": ""
         }
