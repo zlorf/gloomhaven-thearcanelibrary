@@ -9,6 +9,16 @@ import {SCENARIOS, RANGES} from '../constants/Scenarios';
 const iconWidth = "30px";
 const iconWidthSmall = "18px";
 
+const ALL_STATUSES = ["statusEffectStun", "statusEffectDisarm", "statusEffectImmobilize", "statusEffectPoison", "statusEffectWound", "statusEffectMuddle", "statusEffectStrengthen", "statusEffectInvisible"];
+const IMMUNITIES_MAP = {
+  "statusEffectStun": "%stun%",
+  "statusEffectDisarm": "%disarm%",
+  "statusEffectImmobilize": "%immobilize%",
+  "statusEffectPoison": "%poison%",
+  "statusEffectWound": "%wound%",
+  "statusEffectMuddle": "%muddle%",
+};
+
 class MonsterHealthComponent extends GameComponent {
   constructor() {
     super();
@@ -507,13 +517,18 @@ class MonsterHealthComponent extends GameComponent {
         monster.statusTokens = [];
       }
 
-      let index = monster.statusTokens.indexOf(statusToken);
+      const monsterType = this.getMonsterType(monster.name);
+      const monsterLevelStats = this.getMonsterLevelStats(monster);
+      const immunity = IMMUNITIES_MAP[statusToken];
+      const isImmune = monsterType.isBoss && immunity && _.contains(monsterLevelStats.immunities, immunity);
+
+      const index = monster.statusTokens.indexOf(statusToken);
       if (index >= 0) {
         // remove this status token from monster
         monster.statusTokens.splice(index, 1);
       }
-      else {
-        // add this status token to monster
+      else if (!isImmune) {
+        // add this status token to monster if it is not immune
         monster.statusTokens.push(statusToken);
       }
     });
@@ -630,10 +645,8 @@ class MonsterHealthComponent extends GameComponent {
       return buttons;
     }
 
-    let statusTokens = ["statusEffectStun", "statusEffectDisarm", "statusEffectImmobilize", "statusEffectPoison", "statusEffectWound", "statusEffectMuddle", "statusEffectStrengthen", "statusEffectInvisible"];
-
-    for (let i=0; i< statusTokens.length; i++) {
-      let statusToken = statusTokens[i];
+    for (let i=0; i< ALL_STATUSES.length; i++) {
+      let statusToken = ALL_STATUSES[i];
 
       buttons.push(
         <Col key={i} xs={4} md={3}>
@@ -650,10 +663,8 @@ class MonsterHealthComponent extends GameComponent {
   makeStatusEffectToggles() {
     let buttons = [];
 
-    let statusTokens = ["statusEffectStun", "statusEffectDisarm", "statusEffectImmobilize", "statusEffectPoison", "statusEffectWound", "statusEffectMuddle", "statusEffectStrengthen", "statusEffectInvisible"];
-
-    for (let i=0; i< statusTokens.length; i++) {
-      let statusToken = statusTokens[i];
+    for (let i=0; i< ALL_STATUSES.length; i++) {
+      let statusToken = ALL_STATUSES[i];
 
       buttons.push(
         <Col key={i} xs={3} md={1}>
