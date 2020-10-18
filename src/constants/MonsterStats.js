@@ -5253,6 +5253,185 @@ export const MONSTERS = {
         }
       ]
     },
+    "Rat Monstrosity": {
+      "standeeCount": 10,
+      "level": [
+        {
+          "level": 0,
+          "normal": {
+            "health": 4,
+            "move": 1,
+            "attack": 1,
+            "range": 0,
+            "attributes": [
+              "On death, all adjacent figures suffer 1 damage"
+            ]
+          },
+          "elite": {
+            "health": 6,
+            "move": 1,
+            "attack": 2,
+            "range": 0,
+            "attributes": [
+              "On death, all adjacent figures suffer 1 damage"
+            ]
+          }
+        },
+        {
+          "level": 1,
+          "normal": {
+            "health": 4,
+            "move": 1,
+            "attack": 2,
+            "range": 0,
+            "attributes": [
+              "On death, all adjacent figures suffer 1 damage"
+            ]
+          },
+          "elite": {
+            "health": 7,
+            "move": 1,
+            "attack": 2,
+            "range": 0,
+            "attributes": [
+              "On death, all adjacent figures suffer 2 damage"
+            ]
+          }
+        },
+        {
+          "level": 2,
+          "normal": {
+            "health": 5,
+            "move": 2,
+            "attack": 2,
+            "range": 0,
+            "attributes": [
+              "On death, all adjacent figures suffer 1 damage"
+            ]
+          },
+          "elite": {
+            "health": 8,
+            "move": 1,
+            "attack": 3,
+            "range": 0,
+            "attributes": [
+              "On death, all adjacent figures suffer 2 damage",
+              "Advantage"
+            ]
+          }
+        },
+        {
+          "level": 3,
+          "normal": {
+            "health": 6,
+            "move": 2,
+            "attack": 3,
+            "range": 0,
+            "attributes": [
+              "On death, all adjacent figures suffer 2 damage"
+            ]
+          },
+          "elite": {
+            "health": 10,
+            "move": 2,
+            "attack": 3,
+            "range": 0,
+            "attributes": [
+              "On death, all adjacent figures suffer 2 damage",
+              "Advantage"
+            ]
+          }
+        },
+        {
+          "level": 4,
+          "normal": {
+            "health": 8,
+            "move": 2,
+            "attack": 3,
+            "range": 0,
+            "attributes": [
+              "On death, all adjacent figures suffer 2 damage"
+            ]
+          },
+          "elite": {
+            "health": 12,
+            "move": 2,
+            "attack": 3,
+            "range": 0,
+            "attributes": [
+              "On death, all adjacent figures suffer 3 damage",
+              "Advantage"
+            ]
+          }
+        },
+        {
+          "level": 5,
+          "normal": {
+            "health": 10,
+            "move": 3,
+            "attack": 3,
+            "range": 0,
+            "attributes": [
+              "On death, all adjacent figures suffer 2 damage"
+            ]
+          },
+          "elite": {
+            "health": 13,
+            "move": 2,
+            "attack": 4,
+            "range": 0,
+            "attributes": [
+              "On death, all adjacent figures suffer 3 damage",
+              "Advantage"
+            ]
+          }
+        },
+        {
+          "level": 6,
+          "normal": {
+            "health": 12,
+            "move": 3,
+            "attack": 3,
+            "range": 0,
+            "attributes": [
+              "On death, all adjacent figures suffer 3 damage"
+            ]
+          },
+          "elite": {
+            "health": 14,
+            "move": 3,
+            "attack": 4,
+            "range": 0,
+            "attributes": [
+              "On death, all adjacent figures suffer 3 damage",
+              "Advantage"
+            ]
+          }
+        },
+        {
+          "level": 7,
+          "normal": {
+            "health": 12,
+            "move": 3,
+            "attack": 4,
+            "range": 0,
+            "attributes": [
+              "On death, all adjacent figures suffer 3 damage"
+            ]
+          },
+          "elite": {
+            "health": 16,
+            "move": 3,
+            "attack": 5,
+            "range": 0,
+            "attributes": [
+              "On death, all adjacent figures suffer 4 damage",
+              "Advantage"
+            ]
+          }
+        }
+      ]
+    },
     "Rending Drake": {
       "standeeCount": 6,
       "level": [
@@ -6647,6 +6826,147 @@ export const MONSTERS = {
         }
       ]
     },
+    "Vermling Raider": {
+      "standeeCount": 6,
+      "level": [
+        {
+          "level": 0,
+          "normal": {
+            "health": 4,
+            "move": 1,
+            "attack": 2,
+            "range": 0,
+            "attributes": []
+          },
+          "elite": {
+            "health": 8,
+            "move": 1,
+            "attack": 2,
+            "range": 0,
+            "attributes": []
+          }
+        },
+        {
+          "level": 1,
+          "normal": {
+            "health": 5,
+            "move": 1,
+            "attack": 2,
+            "range": 0,
+            "attributes": []
+          },
+          "elite": {
+            "health": 10,
+            "move": 1,
+            "attack": 2,
+            "range": 0,
+            "attributes": []
+          }
+        },
+        {
+          "level": 2,
+          "normal": {
+            "health": 9,
+            "move": 2,
+            "attack": 2,
+            "range": 0,
+            "attributes": []
+          },
+          "elite": {
+            "health": 14,
+            "move": 3,
+            "attack": 3,
+            "range": 0,
+            "attributes": []
+          }
+        },
+        {
+          "level": 3,
+          "normal": {
+            "health": 11,
+            "move": 3,
+            "attack": 2,
+            "range": 0,
+            "attributes": []
+          },
+          "elite": {
+            "health": 16,
+            "move": 3,
+            "attack": 4,
+            "range": 0,
+            "attributes": []
+          }
+        },
+        {
+          "level": 4,
+          "normal": {
+            "health": 12,
+            "move": 3,
+            "attack": 3,
+            "range": 0,
+            "attributes": []
+          },
+          "elite": {
+            "health": 19,
+            "move": 4,
+            "attack": 4,
+            "range": 0,
+            "attributes": []
+          }
+        },
+        {
+          "level": 5,
+          "normal": {
+            "health": 15,
+            "move": 3,
+            "attack": 3,
+            "range": 0,
+            "attributes": []
+          },
+          "elite": {
+            "health": 23,
+            "move": 4,
+            "attack": 4,
+            "range": 0,
+            "attributes": []
+          }
+        },
+        {
+          "level": 6,
+          "normal": {
+            "health": 17,
+            "move": 4,
+            "attack": 3,
+            "range": 0,
+            "attributes": []
+          },
+          "elite": {
+            "health": 27,
+            "move": 4,
+            "attack": 5,
+            "range": 0,
+            "attributes": []
+          }
+        },
+        {
+          "level": 7,
+          "normal": {
+            "health": 19,
+            "move": 4,
+            "attack": 4,
+            "range": 0,
+            "attributes": []
+          },
+          "elite": {
+            "health": 31,
+            "move": 4,
+            "attack": 6,
+            "range": 0,
+            "attributes": []
+          }
+        }
+      ]
+    },
     "Vermling Scout": {
       "standeeCount": 10,
       "level": [
@@ -7141,6 +7461,171 @@ export const MONSTERS = {
             "attributes": [
               "%disarm%",
               "%shield% 3"
+            ]
+          }
+        }
+      ]
+    },
+    "Zealot": {
+      "standeeCount": 6,
+      "level": [
+        {
+          "level": 0,
+          "normal": {
+            "health": 4,
+            "move": 2,
+            "attack": 2,
+            "range": 0,
+            "attributes": []
+          },
+          "elite": {
+            "health": 7,
+            "move": 2,
+            "attack": 3,
+            "range": 0,
+            "attributes": []
+          }
+        },
+        {
+          "level": 1,
+          "normal": {
+            "health": 6,
+            "move": 2,
+            "attack": 2,
+            "range": 0,
+            "attributes": []
+          },
+          "elite": {
+            "health": 8,
+            "move": 2,
+            "attack": 3,
+            "range": 0,
+            "attributes": [
+              "%wound%"
+            ]
+          }
+        },
+        {
+          "level": 2,
+          "normal": {
+            "health": 7,
+            "move": 3,
+            "attack": 3,
+            "range": 0,
+            "attributes": []
+          },
+          "elite": {
+            "health": 11,
+            "move": 3,
+            "attack": 3,
+            "range": 0,
+            "attributes": [
+              "%wound%"
+            ]
+          }
+        },
+        {
+          "level": 3,
+          "normal": {
+            "health": 8,
+            "move": 3,
+            "attack": 3,
+            "range": 0,
+            "attributes": [
+              "%wound%"
+            ]
+          },
+          "elite": {
+            "health": 13,
+            "move": 3,
+            "attack": 4,
+            "range": 0,
+            "attributes": [
+              "%wound%"
+            ]
+          }
+        },
+        {
+          "level": 4,
+          "normal": {
+            "health": 10,
+            "move": 3,
+            "attack": 3,
+            "range": 0,
+            "attributes": [
+              "%wound%"
+            ]
+          },
+          "elite": {
+            "health": 17,
+            "move": 3,
+            "attack": 4,
+            "range": 0,
+            "attributes": [
+              "%wound%"
+            ]
+          }
+        },
+        {
+          "level": 5,
+          "normal": {
+            "health": 12,
+            "move": 4,
+            "attack": 3,
+            "range": 0,
+            "attributes": [
+              "%wound%"
+            ]
+          },
+          "elite": {
+            "health": 18,
+            "move": 4,
+            "attack": 5,
+            "range": 0,
+            "attributes": [
+              "%wound%"
+            ]
+          }
+        },
+        {
+          "level": 6,
+          "normal": {
+            "health": 14,
+            "move": 4,
+            "attack": 4,
+            "range": 0,
+            "attributes": [
+              "%wound%"
+            ]
+          },
+          "elite": {
+            "health": 22,
+            "move": 4,
+            "attack": 6,
+            "range": 0,
+            "attributes": [
+              "%wound%"
+            ]
+          }
+        },
+        {
+          "level": 7,
+          "normal": {
+            "health": 16,
+            "move": 4,
+            "attack": 5,
+            "range": 0,
+            "attributes": [
+              "%wound%"
+            ]
+          },
+          "elite": {
+            "health": 26,
+            "move": 4,
+            "attack": 7,
+            "range": 0,
+            "attributes": [
+              "%wound%"
             ]
           }
         }

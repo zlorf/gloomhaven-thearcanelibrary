@@ -1069,6 +1069,12 @@ class MonsterHealthComponent extends GameComponent {
                   </ul>
                 </li>
               </ol>
+              <p><strong>Remarks:</strong></p>
+              <p>
+                The following monsters appearing in Jaws of the Lion have undergone slight changes versus their basic counterparts:<br/>
+                Black Imp, Giant Viper, Living Corpse, Living Spirit, Stone Golem, and Vermling Scouts.<br/>
+                The stats listed here are taken from the base Gloomhaven. For a complete list of changes, see <a href="https://www.reddit.com/r/Gloomhaven/comments/hdz6pm/jaws_of_the_lion_monster_ability_card_changes/">this excellent Reddit post</a>.
+              </p>
             </Col>
           </Row>
       	</Grid>
