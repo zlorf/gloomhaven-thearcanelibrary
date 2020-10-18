@@ -3,6 +3,16 @@ import { Grid, Row, Col, Button } from 'react-bootstrap';
 
 const versionHistory = [
   {
+    versionNumber: "1.8",
+    items: [
+      "added content (scenarios, treasures, monsters) from Jaws of the Lion",
+      "fixed startup problem if there is no saved game",
+      "monster health tracker updates: campaign names and boss immunities",
+      "minor code cleanup",
+    ],
+    date: "2020/10/18"
+  },
+  {
     versionNumber: "1.7",
     items: [
       "added missing achievement and scenario requirement from Base game",
