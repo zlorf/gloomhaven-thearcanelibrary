@@ -6,6 +6,15 @@ import ExpansionConstants from '../constants/ExpansionConstants';
 import {SCENARIOS, RANGES} from '../constants/Scenarios';
 import GloomhavenIcon from '../components/utils/GloomhavenIcon';
 
+const getBlockedSet = _.memoize(function (completedScenarios) {
+  const blocked = _.chain(completedScenarios)
+    .map((num) => SCENARIOS[num].blocks)
+    .filter()
+    .flatten()
+    .value();
+  return new Set(blocked);
+});
+
 class ScenariosComponent extends GameComponent {
   getStateFromGame(game) {
     return {
@@ -16,10 +25,18 @@ class ScenariosComponent extends GameComponent {
     };
   }
 
+  getBlockedScenarios() {
+    return getBlockedSet(this.state.scenariosComplete);
+  }
+
   isAllowedToDoScenario(number) {
     const scenario = SCENARIOS[number];
     const globalAchievements = this.state.globalAchievements;
     const partyAchievements = this.state.partyAchievements;
+    const blocked = this.getBlockedScenarios();
+    if (blocked.has(number)) {
+      return false;
+    }
 
     const conditionsSatisfied = [];
     for (const reqGlobAch of (scenario.globalAchievementsRequired || [])) {
@@ -162,11 +179,14 @@ class ScenariosComponent extends GameComponent {
     // Forgotten Circles
     const forgottenCirclesColumns = _.map(RANGES[1], (i) => this.makeScenarioColumn(i));
 
+    // Jaws of the Lion
+    const jotlColumns = _.map(RANGES[2], (i) => this.makeScenarioColumn(i));
+
     // solo scenarios
-    const soloColumns = _.map(RANGES[2], (i) => this.makeScenarioColumn(i));
+    const soloColumns = _.map(RANGES[3], (i) => this.makeScenarioColumn(i));
 
     // kickstarter scenarios
-    const kickstarterColumns = _.map(RANGES[3], (i) => this.makeScenarioColumn(i));
+    const kickstarterColumns = _.map(RANGES[4], (i) => this.makeScenarioColumn(i));
 
     return (
       <div className="container scenarios-container">
@@ -212,6 +232,11 @@ class ScenariosComponent extends GameComponent {
           <Row>
             <Col lg={12}><h2>{ExpansionConstants.FORGOTTEN_CIRCLES}</h2></Col>
             {forgottenCirclesColumns}
+          </Row>
+          <hr />
+          <Row>
+            <Col lg={12}><h2>{ExpansionConstants.JAWS_OF_THE_LION}</h2></Col>
+            {jotlColumns}
           </Row>
           <hr />
           <Row>

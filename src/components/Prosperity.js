@@ -5,7 +5,7 @@ import GameActions from '../actions/GameActions';
 import GameComponent from './GameComponent';
 import ExpansionConstants from '../constants/ExpansionConstants';
 import {SCENARIOS} from '../constants/Scenarios';
-import {TREASURES} from '../constants/Treasures';
+import {TREASURES, RANGES} from '../constants/Treasures';
 
 const DONATION_MILESTONES = [10, 15, 20, 25, 30, 35, 40, 50, 60, 70, 80, 90, 100];
 
@@ -107,7 +107,7 @@ class ProsperityComponent extends GameComponent {
 
     const treasure = TREASURES[number];
 
-    let buttonText = number;
+    let buttonText = treasure.symbol || number;
     if (unlocked) {
       buttonText += " - " + treasure.title;
     }
@@ -173,19 +173,18 @@ class ProsperityComponent extends GameComponent {
   }
 
   render() {
-    // treasures
-    let treasureColumns = [];
-
     let availableTreasures = this.makeAvailableTreasures();
     let treasuresInCompleteScenarios = this.makeTreasuresInCompleteScenarios();
 
-    treasureColumns.push(<Col xs={12} key="t0"><h2>{ExpansionConstants.BASE}</h2></Col>);
-    for (let i=1; i<TREASURES.length; i++) {
-      if (i === 76) {
-        treasureColumns.push(<Col xs={12} key="t1"><h2>{ExpansionConstants.FORGOTTEN_CIRCLES}</h2></Col>);
-      }
-      treasureColumns.push(this.makeTreasureColumn(i, availableTreasures, treasuresInCompleteScenarios));
-    }
+    // Base game
+    const baseColumns = _.map(RANGES[0], (i) => this.makeTreasureColumn(i, availableTreasures, treasuresInCompleteScenarios));
+
+    // Forgotten Circles
+    const forgottenCirclesColumns = _.map(RANGES[1], (i) => this.makeTreasureColumn(i, availableTreasures, treasuresInCompleteScenarios));
+
+    // Jaws of the Lion
+    const jotlColumns = _.map(RANGES[2], (i) => this.makeTreasureColumn(i, availableTreasures, treasuresInCompleteScenarios));
+
 
     // prosperity
     let level = this.prosperityLevel(this.state.prosperity);
@@ -356,9 +355,20 @@ class ProsperityComponent extends GameComponent {
               <Button className="btn-lightning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button> Missed Treasure in complete scenario
             </Col>
           </Row>
-          <Row className="treasure-container">
-            {treasureColumns}
-          </Row>
+          <div className="treasure-container">
+            <Row>
+              <Col xs={12}><h2>{ExpansionConstants.BASE}</h2></Col>
+              {baseColumns}
+            </Row>
+            <Row>
+              <Col xs={12}><h2>{ExpansionConstants.FORGOTTEN_CIRCLES}</h2></Col>
+              {forgottenCirclesColumns}
+            </Row>
+            <Row>
+              <Col xs={12}><h2>{ExpansionConstants.JAWS_OF_THE_LION}</h2></Col>
+              {jotlColumns}
+            </Row>
+          </div>
         </Grid>
       </div>
     );

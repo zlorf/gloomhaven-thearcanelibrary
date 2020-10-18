@@ -1,3 +1,12 @@
+import _ from 'underscore';
+
+const FC_START = 76;
+const FC_END = 97;
+
+const JOTL_TREASURE_PREFIX = "JOTL-"
+
+export const jotlTreasure = (n) => JOTL_TREASURE_PREFIX + n;
+
 export const TREASURES = [
   { }, // dummy treasure zero (there is no treasure zero)
   // 1-75 Base game
@@ -99,4 +108,37 @@ export const TREASURES = [
   { title: "Gain 25 gold and Party Achievement: A Strongbox. Add City Event 85" }, // 95
   { title: "A Mysterious Message (please see Scenario Book to view)" },
   { title: "Ring of Duality (Item 152)" }, // No number in game
+];
+
+// Jaws of the Lion
+const jotl_treasures = [
+  { title: "Gain 10 experience" },
+  { title: "Ring of Strength (Item 31)" },
+  { title: "Gain 15 experience" },
+  { title: "Gain 5 gold" },
+  { title: "Gain 1 checkmark" }, // 5
+  { title: "Gain 10 gold" },
+  { title: "Gain 5 gold" },
+  { title: "Suffer 3 damage, gain POISON" },
+  { title: "Gain 5 gold" },
+  { title: "Fateful Compass (Item 27)" }, // 10
+  { title: "Ring of Haste (Item 30)" },
+  { title: "Gain 5 gold" },
+  { title: "Gain 5 gold" },
+  { title: "Gain 3 money tokens" },
+  { title: "Gain 1 checkmark" }, // 15
+  { title: "Mana potion (Item 14)" },
+];
+
+for (const [i, treasure] of jotl_treasures.entries()) {
+  const humanIndex = i + 1;
+  const index = jotlTreasure(humanIndex);
+  treasure.symbol = humanIndex;
+  TREASURES[index] = treasure;
+}
+
+export const RANGES = [
+  _.range(1, FC_START),
+  _.range(FC_START, FC_END + 1),
+  _.map(_.range(1, jotl_treasures.length + 1), jotlTreasure),
 ];

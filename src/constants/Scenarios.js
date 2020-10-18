@@ -2,6 +2,7 @@ import _ from 'underscore';
 import ExpansionConstants from './ExpansionConstants';
 import {GLOBAL_ACHIEVEMENTS} from './Achievements';
 import {PARTY_ACHIEVEMENTS} from './Party';
+import {jotlTreasure} from './Treasures';
 
 const KICKSTARTER_PREFIX = 801;
 const SOLO_PREFIX = 901;
@@ -9,6 +10,10 @@ const SOLO_PREFIX = 901;
 const FC_START = 96;
 const FC_END = 115;
 const FC_CHALLENGE = 701;
+// range up to 710 is reserved for special scenarios without a number
+
+const JOTL_PREFIX = 711;
+const jotlScenario = (n) => JOTL_PREFIX + n - 1;
 
 // Monster decks taken from
 // https://raw.githubusercontent.com/GinoGalotti/gloomycompanion/monster-stats/scenarios.js
@@ -1554,6 +1559,222 @@ const solo_scenarios = [
   },
 ];
 
+const jotl_scenarios = [
+  {
+    // 1
+    title: "Roadside Ambush",
+    monsters:
+        [   {"name": "Vermling Raider"}
+        ]
+  },
+  {
+    title: "A Hole in the Wall",
+    treasures: [jotlTreasure(14)],
+    monsters:
+        [   {"name": "Vermling Raider"}
+        ]
+  },
+  {
+    title: "The Black Ship",
+    treasures: [jotlTreasure(10)],
+    monsters:
+        [   {"name": "Giant Viper"}
+        ,   {"name": "Zealot"}
+        ]
+  },
+  {
+    title: "A Ritual in Stone",
+    treasures: [jotlTreasure(16)],
+    monsters:
+        [   {"name": "Stone Golem"}
+        ,   {"name": "Zealot"}
+        ]
+  },
+  {
+    // 5
+    title: "A Deeper Understanding",
+    treasures: [jotlTreasure(9)],
+    monsters:
+        [   {"name": "Blood Tumor"}
+        ,   {"name": "Chaos Demon"}
+        ,   {"name": "Zealot"}
+        ]
+  },
+  {
+    title: "Corruted Research",
+    monsters:
+        [   {"name": "Rat Monstrosity"}
+        ,   {"name": "Black Sludge"}
+        ]
+  },
+  {
+    title: "Sunken Tumor",
+    blocks: [jotlScenario(8)],
+    treasures: [jotlTreasure(12)],
+    monsters:
+        [   {"name": "Blood Tumor"}
+        ,   {"name": "Vermling Scout"}
+        ,   {"name": "Zealot"}
+        ]
+  },
+  {
+    title: "Hidden Tumor",
+    blocks: [jotlScenario(7)],
+    treasures: [jotlTreasure(4)],
+    monsters:
+        [   {"name": "Blood Tumor"}
+        ,   {"name": "Chaos Demon"}
+        ,   {"name": "Zealot"}
+        ]
+  },
+  {
+    title: "Explosive Evolution",
+    treasures: [jotlTreasure(1)],
+    monsters:
+        [   {"name": "Blood Horror"}
+        ,   {"name": "Living Corpse"}
+        ,   {"name": "Zealot"}
+        ]
+  },
+  {
+    // 10
+    title: "The Gauntlet",
+    treasures: [jotlTreasure(8)],
+    monsters:
+        [   {"name": "Black Sludge"}
+        ,   {"name": "Chaos Demon"}
+        ,   {"name": "Stone Golem"}
+        ]
+  },
+  {
+    title: "Defiled Sewers",
+    blocks: [jotlScenario(12)],
+    monsters:
+        [   {"name": "Black Sludge"}
+        ,   {"name": "Giant Viper"}
+        ,   {"name": "Vermling Scout"}
+        ]
+  },
+  {
+    title: "Beguiling Sewers",
+    blocks: [jotlScenario(11)],
+    monsters:
+        [   {"name": "Living Corpse"}
+        ,   {"name": "Living Spirit"}
+        ]
+  },
+  {
+    title: "Vile Harvest",
+    treasures: [jotlTreasure(5)],
+    monsters:
+        [   {"name": "Black Sludge"}
+        ,   {"name": "Blood Imp"}
+        ,   {"name": "Zealot"}
+        ]
+  },
+  {
+    title: "Toxic Harvest",
+    treasures: [jotlTreasure(15)],
+    monsters:
+        [   {"name": "Blood Imp"}
+        ,   {"name": "Giant Viper"}
+        ,   {"name": "Zealot"}
+        ]
+  },
+  {
+    // 15
+    title: "Tained Blood",
+    monsters:
+        [   {"name": "Black Imp"}
+        ,   {"name": "Blood Imp"}
+        ,   {"name": "Zealot"}
+        ]
+  },
+  {
+    title: "Mixed Results",
+    monsters:
+        [   {"name": "Black Imp"}
+        ,   {"name": "Blood Imp"}
+        ,   {"name": "Rat Monstrosity"}
+        ]
+  },
+  {
+    title: "Red Twilight",
+    treasures: [jotlTreasure(3)],
+    monsters:
+        [   {"name": "Blood Imp"}
+        ,   {"name": "Blood Monstrosity"}
+        ,   {"name": "First of the Order"}
+        ]
+  },
+  {
+    title: "The Heist",
+    treasures: [jotlTreasure(2), jotlTreasure(6), jotlTreasure(7), jotlTreasure(13)],
+    monsters:
+        [   {"name": "Stone Golem"}
+        ]
+  },
+  {
+    title: "Den of Thieves",
+    monsters:
+        [   {"name": "Rat Monstrosity"}
+        ,   {"name": "Vermling Raider"}
+        ,   {"name": "Vermling Scout"}
+        ]
+  },
+  {
+    // 20
+    title: "Misplaced Goods",
+    monsters:
+        [   {"name": "Black Sludge"}
+        ,   {"name": "Chaos Demon"}
+        ,   {"name": "Giant Viper"}
+        ,   {"name": "Rat Monstrosity"}
+        ]
+  },
+  {
+    title: "Agents of Chaos",
+    treasures: ["JOTL-11"],
+    monsters:
+        [   {"name": "Chaos Demon"}
+        ,   {"name": "Giant Viper"}
+        ]
+  },
+  {
+    title: "Unfriendly Message",
+    monsters:
+        [   {"name": "Giant Viper"}
+        ,   {"name": "Stone Golem"}
+        ,   {"name": "Vermling Raider"}
+        ]
+  },
+  {
+    title: "Best of the Best",
+    monsters:
+        [   {"name": "Giant Viper"}
+        ,   {"name": "Rat Monstrosity"}
+        ,   {"name": "Stone Golem"}
+        ,   {"name": "Vermling Raider"}
+        ]
+  },
+  {
+    title: "Warding the Void",
+    monsters:
+        [   {"name": "Black Imp"}
+        ,   {"name": "Chaos Demon"}
+        ]
+  },
+  {
+    // 25
+    title: "The Greatest Job in the World",
+    monsters:
+        [   {"name": "Living Spirit"}
+        ,   {"name": "Vermling Raider"}
+        ,   {"name": "Vermling Scout"}
+        ]
+  },
+];
+
 export const SCENARIOS = Object.assign({}, base_scenarios);
 SCENARIOS[FC_CHALLENGE] = extra_scenarios[0];
 for (const [i, scenario] of kickstarter_scenarios.entries()) {
@@ -1562,16 +1783,22 @@ for (const [i, scenario] of kickstarter_scenarios.entries()) {
 for (const [i, scenario] of solo_scenarios.entries()) {
   SCENARIOS[SOLO_PREFIX + i] = scenario;
 }
+for (const [i, scenario] of jotl_scenarios.entries()) {
+  scenario.symbol = i + 1;
+  SCENARIOS[JOTL_PREFIX + i] = scenario;
+}
 
 export const RANGES = [
   _.range(1, FC_START),
   _.range(FC_START, FC_END + 1).concat([FC_CHALLENGE]),
+  _.range(JOTL_PREFIX, JOTL_PREFIX + jotl_scenarios.length),
   _.range(SOLO_PREFIX, SOLO_PREFIX + solo_scenarios.length),
   _.range(KICKSTARTER_PREFIX, KICKSTARTER_PREFIX + kickstarter_scenarios.length),
 ];
 export const RANGE_TITLES = [
   ExpansionConstants.BASE,
   ExpansionConstants.FORGOTTEN_CIRCLES,
+  ExpansionConstants.JAWS_OF_THE_LION,
   ExpansionConstants.SOLO,
   ExpansionConstants.KICKSTARTER,
 ];
